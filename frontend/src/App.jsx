@@ -12,11 +12,19 @@ import { useAuthStore } from "./store/useAuthStore";
 import Navbar from './components/Navbar';
 import {Loader} from "lucide-react";
 
+import { useThemeStore } from "./store/useThemeStore";
+
 import { Toaster } from "react-hot-toast";
 
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth} = useAuthStore();
+  const { theme } = useThemeStore();
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+  
 
   useEffect(() => {
     checkAuth();
